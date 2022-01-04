@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Booking;
+use App\Models\RequestStatement;
 use Illuminate\Database\Seeder;
 
-class BookingSeeder extends Seeder
+class RequestStatementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class BookingSeeder extends Seeder
      */
     public function run()
     {
-      Booking::factory(3)->create();
+        RequestStatement::factory(5)->create();
     }
 }

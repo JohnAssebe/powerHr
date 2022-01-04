@@ -21,9 +21,9 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" class="sort">{{__('#')}}</th>
-                            <th scope="col" class="sort">{{__('Image')}}</th>
+                            {{-- <th scope="col" class="sort">{{__('Image')}}</th> --}}
                             <th scope="col" class="sort">{{__('Name')}}</th>
-                            <th scope="col" class="sort">{{__('Service')}}</th>
+                            {{-- <th scope="col" class="sort">{{__('Service')}}</th> --}}
                             <th scope="col" class="sort">{{__('Status')}}</th>
                             <th></th>
                         </tr>
@@ -33,11 +33,11 @@
                             @foreach ($emps as $key => $emp)
                                 <tr>
                                     <th>{{$emps->firstItem() + $key}}</th>
-                                    <td>
+                                    {{-- <td> --}}
                                         {{-- <img src="{{asset('storage/images/employee/'.$emp->image)}}" class="tableimage rounded"> --}}
-                                    </td>
-                                    <td>{{$emp->name}}</td>
-                                    <td>
+                                    {{-- </td> --}}
+                                    <td>{{$emp->user["full_name"]}}</td>
+                                    {{-- <td> --}}
                                         {{-- <div class="avatar-group">
                                             @foreach ($emp->services as $service)
                                                 <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$service->name}}">
@@ -45,7 +45,7 @@
                                                 </a>    
                                             @endforeach
                                         </div> --}}
-                                    </td>
+                                    {{-- </td> --}}
                                     <td>
                                         <label class="custom-toggle">
                                             <input type="checkbox"  onchange="hideEmp({{$emp->emp_id}})" {{$emp->status == 0?'checked': ''}}>

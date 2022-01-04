@@ -13,10 +13,6 @@ class CreateOrganizationTable extends Migration
 			$table->id('organization_id');
 			$table->integer('owner_id');
 			$table->string('name');
-			// $table->string('image');
-			// $table->string('logo');
-
-		
 			$table->bigInteger('phone')->nullable();
 			$table->string('sun', 150)->nullable()->default('NULL');
 			$table->string('mon', 150)->nullable()->default('NULL');
@@ -26,8 +22,6 @@ class CreateOrganizationTable extends Migration
 			$table->string('fri', 150)->nullable()->default('NULL');
 			$table->string('sat', 150)->nullable()->default('NULL');
 			$table->tinyInteger('status');
-			// $table->string('latitude');
-			// $table->string('longitude');
 			$table->timestamps();
 		});
 	}

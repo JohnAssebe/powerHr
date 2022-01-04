@@ -1,19 +1,19 @@
 <?php
 
-namespace Database\Seeders;
+// namespace Database\Seeders;
 
-use App\Models\Organization;
-use Illuminate\Database\Seeder;
+// use App\Models\Organization;
+// use Illuminate\Database\Seeder;
 
-class OrganizationSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      Organization::factory(100)->create();
-    }
-}
+// class OrganizationSeeder extends Seeder
+// {
+//     /**
+//      * Run the database seeds.
+//      *
+//      * @return void
+//      */
+//     public function run()
+//     {
+//       Organization::factory(100)->create();
+//     }
+// }

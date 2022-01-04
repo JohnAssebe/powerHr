@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('full_name');
             // $table->string('role')->default('Patient');
-            $table->integer('is_profile_complete')->default(0);
+            $table->integer('is_profile_complete')->default('0');
             $table->tinyInteger('status')->default('1');
             $table->tinyInteger('role')->default('3');
             $table->rememberToken();

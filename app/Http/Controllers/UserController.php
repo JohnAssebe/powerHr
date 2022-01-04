@@ -112,13 +112,11 @@ class UserController extends Controller
     //update user account
     public function update_account(Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        logger($request);
+        $user = User::find($request->id);
         $user->full_name = $request->full_name;
-        $user->role = $request->role;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->is_profile_complete = $request->is_profile_complete;
-        $user->status = $request->status;
         $user->save();
         return response()->json(['user' => $user, 'token' => $request->token]);
     }

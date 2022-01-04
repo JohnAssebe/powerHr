@@ -15,7 +15,7 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first();
         $emps = Employee::where([['organization_id',$organization->organization_id]])
         ->orderBy('emp_id', 'DESC')
         ->paginate(10);
@@ -25,7 +25,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first();
         // $services = Service::where(['organization_id', $organization->organization_id])->get();
         
         return view('admin/employee/create', compact('organization'));
@@ -41,7 +41,7 @@ class EmployeeController extends Controller
 
         $emp = new Employee();
 
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first();
         $emp->organization_id = $organization->organization_id;
         $emp->name = $request->name;
         $emp->email = $request->email;
@@ -111,7 +111,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $emp = Employee::find($id);
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first();
         // $services = Service::where(['organization_id', $organization->organization_id])->get();
 
         $appointment = Booking::where('emp_id',$id)->get();
@@ -128,18 +128,18 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'bail|required',
-            'email' => 'bail|required|email',
-            'phone' => 'bail|required|numeric',
-        ]);
+        // $request->validate([
+        //     'name' => 'bail|required',
+        //     'email' => 'bail|required|email',
+        //     'phone' => 'bail|required|numeric',
+        // ]);
 
         $emp = Employee::find($id);
         
         
-        $emp->name = $request->name;
-        $emp->email = $request->email;
-        $emp->phone = $request->phone;
+        // $emp->name = $request->name;
+        // $emp->email = $request->email;
+        // $emp->phone = $request->phone;
 
         
         if($request->sunopen == null || $request->sunclose == null){

@@ -104,4 +104,16 @@ class User extends Authenticatable
     {
         return ucfirst($value);
     }
+
+    public function employee(){
+        return $this->hasOne(Employee::class, 'emp_id');
+    }
+    public function prescription()
+    {
+        return $this->hasMany(Prescription::class);
+    }
+    public function requestStatement()
+    {
+        return $this->hasOne(RequestStatement::class);
+    }
 }

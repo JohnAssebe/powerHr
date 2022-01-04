@@ -10,6 +10,13 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TherapistApiController;
+use App\Models\Booking;
+use App\Models\User;
+use App\Models\Employee;
+use App\Models\RequestStatement;
+use App\Models\Prescription;
+use Illuminate\Support\Collection;
 
 Auth::routes();
 // Route::get('/join', function () {
@@ -76,3 +83,62 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/organization/hideOrganization', [OrganizationController::class, 'hideOrganization']);
     Route::post('/organization/dayoff', [OrganizationController::class, 'organizationDayOff']);
 });
+
+Route::get('fetchreported', [TherapistApiController::class, 'fetchReportedPatients']);
+Route::get('remove/{id}', [TherapistApiController::class, 'removeReportedPatient']);
+
+
+
+Route::get("testingemployeedata", function () {
+    // $ids = [2,4];
+    // $employee = Employee::where([["organization_id", 1], ["profession", "psychiatrist"]],)->with('user')->get();
+    // // $employee = $employee->whereIn('emp_id', $ids);
+    // dd($employee);
+    // return $employee;
+
+
+});
+
+Route::get("testFetch", function () {
+    // $user = User::where('role', 3)->pluck('id');
+    // dd($user);
+    // $ids = 2;
+    // $arr = [];
+    
+    // $patients = Booking::with('user')->where('emp_id', $ids);
+    // $patients = Booking::with('user')->where('emp_id', $ids);
+    // info($patients);
+    // foreach ($patients as $patient) {
+        // var_dump($patient->user->full_name);
+    // }
+    // dd($patients);
+
+
+    $new_requests = RequestStatement::where('resolved', 0)->get()->map( function ($value){
+            $value->with('user');
+    });
+    if (count($new_requests) > 0) {
+        return response()->json(["status" => true, "data" => $new_requests, "msg" => "Request Statements retrieved Successfully"]);
+    }
+
+});
+
+
+
+Route::get("testprescription", function () {
+    $ids = [2, 4];
+    $prescription = Prescription::where('created_at', '=',  '2021-10-04 21:10:38');
+    // $employee = $employee->whereIn('emp_id', $ids);
+    // dd($prescription->toSql());
+    return $prescription->get();
+
+    // $patients = Booking::all();
+    // $newA = $patients->map(function($value){
+    //     return $value->userDetails->pluck('full_name', 'email', 'role');
+    // });
+
+    // dd(gettype($newA));
+
+});
+
+

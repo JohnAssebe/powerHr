@@ -10,37 +10,45 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentUserApi;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ApiEmployeeController;
+use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\TherapistApiController;
+use App\Http\Controllers\RequestStatementController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::post('writeprescription', [PrescriptionController::class, 'store']);
+Route::post('updateprescription', [PrescriptionController::class, 'update']);
+Route::get('showprescription/{patient_id}', [PrescriptionController::class, 'show']);
+Route::get('deleteprescription/{prescription_id}', [PrescriptionController::class, 'destroy']);
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('report/{id}', [TherapistApiController::class, 'report']);
+Route::get('fetchpatients', [TherapistApiController::class, 'fetchPatients']);
+// Route::get('timeslottherapist', [RequestStatementController::class, 'timeSlotTherapist']);
 
+// Route::post('timeslottherapist', [RequestStatementController::class, 'timeSlotTherapist']);
+// Route::get('fetchpatients', [TherapistApiController::class, 'fetchPatients']);
 //protected routes
 Route::post('booking', [AppointmentUserApi::class, 'booking']);
+
+
+
+Route::post('bookrequest', [RequestStatementController::class, 'bookRequest']);
+Route::post('newrequest', [RequestStatementController::class, 'createNewRequest']);
+Route::get('fetchrequests', [RequestStatementController::class, 'fetchNewRequests']);
+
+
+Route::post('update', [UserController::class, 'update_account']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('createMeeting', [MeetingController::class, 'createAndJoinMeeting']);
 
-    Route::get('all_users', [UserController::class, 'all_account']);
+    // Route::get('all_users', [UserController::class, 'all_account']);
     Route::get('delete/{id}', [UserController::class, 'delete_account']);
-    Route::get('search/{user_name}', [UserController::class, 'search_account']);
-    Route::post('update', [UserController::class, 'update_account']);
+    // Route::get('search/{user_name}', [UserController::class, 'search_account']);
     Route::post('logout', [UserController::class, 'logout']);
-    Route::post('upload', [UserController::class, 'upload_pic']);
-    Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
-    Route::post('therapist_speciality', [TherapistController::class, 'therapist_disorder_speciality_insertion']);
+    // Route::post('upload', [UserController::class, 'upload_pic']);
+    // Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
+    // Route::post('therapist_speciality', [TherapistController::class, 'therapist_disorder_speciality_insertion']);
     Route::post('add_therapist', [TherapistController::class, 'register_profile']);
     //Admin Routes
     Route::post('register_admin', [AdminController::class, 'register_admin']);
@@ -72,6 +80,11 @@ Route::view('/', 'welcome');
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 // Route::post('is_valid', [UserController::class, 'is_user_input_valid']);
+
+// Therapist Authentication
+Route::post('registerEmployee', [ApiEmployeeController::class, 'register']);
+Route::post('loginEmployee', [ApiEmployeeController::class, 'login']);
+Route::post('logoutEmployee', [ApiEmployeeController::class, 'logout']);
 
 //Survey Routes
 Route::post('add_survey_question', [SurveyController::class, 'add_survey_question']);
@@ -108,4 +121,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/appointment', 'api\UserApiController@showAppointment');
     Route::get('/appointment/{id}', 'api\UserApiController@singleAppointment');
     Route::get('/appointment/cancel/{id}', 'api\UserApiController@cancelAppointment');
+});
+
+Route::get('echo', function(){
+    echo "jello";
 });

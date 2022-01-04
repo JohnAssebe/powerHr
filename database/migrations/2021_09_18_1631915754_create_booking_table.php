@@ -19,6 +19,8 @@ class CreateBookingTable extends Migration
 			$table->string('end_time');
 			$table->enum('session_type', ["coaching", "mentoring", "therapy_session"]);
 			$table->string('booking_status');
+			$table->text('request')->nullable();
+			$table->string('type')->nullable()->default('individual');
 			$table->timestamps();
 		});
 	}

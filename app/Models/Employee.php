@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
+    use HasFactory;
     protected $table = 'employee';
     public $primaryKey = 'emp_id';
     public $timestamps = true;
-    public $appends = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday','organization'];
-
+    public $appends = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'organization'];
+    protected $guarded = [];
     public function getSundayAttribute()
     {
         return json_decode($this->sun, true);
@@ -52,6 +54,14 @@ class Employee extends Model
     }
     public function booking()
     {
-        return $this->belongsTo(Booking::class,'booking_id','id');
+        return $this->belongsTo(Booking::class, 'booking_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function prescription(){
+        return $this->hasMany(Prescription::class);
     }
 }

@@ -83,7 +83,11 @@
                     <span class="nav-link-text">{{ __('Therapist') }}</span>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('fetchreported')  ? 'active' : ''}}" href="{{url('fetchreported')}}">
+                    <span class="nav-link-text">{{ __('Reported') }}</span>
+                    </a>
+                </li>
                 
                 
             </ul>

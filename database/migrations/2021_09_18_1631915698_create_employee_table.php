@@ -10,10 +10,9 @@ class CreateEmployeeTable extends Migration
 	{
 		Schema::create('employee', function (Blueprint $table) {
 			$table->id('emp_id');
-			$table->integer('organization_id');
-			$table->string('name');
-			$table->string('email');
-			$table->bigInteger('phone');
+			$table->integer('organization_id')->default('1');
+			$table->unsignedBigInteger('user_id');
+			// $table->string('full_name');
 			$table->string('sun', 150)->nullable()->default('NULL');
 			$table->string('mon', 150)->nullable()->default('NULL');
 			$table->string('tue', 150)->nullable()->default('NULL');
@@ -22,9 +21,11 @@ class CreateEmployeeTable extends Migration
 			$table->string('fri', 150)->nullable()->default('NULL');
 			$table->string('sat', 150)->nullable()->default('NULL');
 			$table->tinyInteger('status')->default('1');
-			$table->tinyInteger('profession')->default();
+			$table->string('profession');
 			$table->tinyInteger('isdelete')->default('0');
+			
 			$table->timestamps();
+			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 

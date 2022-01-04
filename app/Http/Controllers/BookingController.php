@@ -19,7 +19,7 @@ class BookingController extends Controller
     public function index()
     {
         // dd(Auth()->user()->id);
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first(); //
         $bookings = Booking::where('organization_id', $organization->organization_id)
             ->orderBy('id', 'DESC')
             ->paginate(8);
@@ -32,7 +32,7 @@ class BookingController extends Controller
 
     public function create()
     {
-        $organization_id = Organization::where('owner_id', Auth()->user()->id)->first()->organization_id;
+        $organization_id = Organization::all()->first()->organization_id; //
         // $services = Service::where('organization_id', $organization_id)->get();
         $users = User::where([['status', 1], ['role', 3]])->get();
         dd($users);
@@ -43,7 +43,7 @@ class BookingController extends Controller
 
     public function timeslot(Request $request)
     {
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first(); //
+        $organization = Organization::all()->first(); //
 
         $master = array();
         $day = strtolower(Carbon::parse($request->date)->format('l'));
@@ -77,7 +77,7 @@ class BookingController extends Controller
 
     public function selectemployee(Request $request)
     {
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first(); //
+        $organization = Organization::all()->first(); //
 
         $emp_array = array();
         $emps_all = Employee::where([['organization_id', $organization->organization_id], ['status', 1]])->get();
@@ -140,7 +140,7 @@ class BookingController extends Controller
             'emp_id' => 'bail|required',
         ]);
 
-        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::all()->first(); //
         $booking = new Booking();
 
         // $services =  str_replace('"', '', json_encode($request->service_id));

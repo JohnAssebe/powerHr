@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RequestStatement;
 use Illuminate\Database\Seeder;
 
 
@@ -19,9 +20,10 @@ class DatabaseSeeder extends Seeder
        
         $this->call(DisorderSeeder::class);
         $this->call(DisorderTherapistSeeder::class);
-        // $this->call(OrganizationSeeder::class);
-        // $this->call(EmployeeSeeder::class);
-        // $this->call(BookingSeeder::class);
+        $this->call(OrganizationSeeder::class);
+        $this->call(EmployeeSeeder::class);
+        $this->call(RequestStatementSeeder::class);
+        $this->call(BookingSeeder::class);
          
     }
 }

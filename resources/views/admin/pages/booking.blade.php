@@ -19,6 +19,7 @@
                 </div>
                 <!-- table -->
                 <div class="table-responsive">
+
                     <table class="table align-items-center table-flush" id="booking_dt" class="display">
                         <thead class="thead-light">
                             <tr>
@@ -35,16 +36,18 @@
                                 <th></th>
                             </tr>
                         </thead>
+
                         <tbody class="list">
                             @if (count($bookings) != 0)
                                 @foreach ($bookings as $key => $booking)
                                     <tr>
+                                        
                                         <th>{{$bookings->firstItem() + $key}}</th>
                                         <td>{{$booking->booking_id}}</td>
-                                        <td>{{$booking->user->name}}</td>
+                                        <td>{{$booking->userDetails['full_name']}}</td>
                                         
                                         <td>{{$booking->date}}</td>
-                                        <td>{{$booking->employee->name}}</td>
+                                        <td>{{$booking->empDetails->user->full_name}}</td>
                                         <td>{{$booking->start_time}} To {{$booking->end_time}}</td>
                                         
                                         <td>
@@ -62,9 +65,7 @@
                                             <button class="btn-white btn shadow-none p-0 m-0 table-action text-warning bg-white" onclick="show_booking({{$booking->id}},'{{$base_url}}','booking')" data-toggle="tooltip" data-original-title="{{__('View Appointment')}}">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <a href="{{url('/admin/booking/invoice/'.$booking->id)}}" class="text-blue cursor table-action"  data-toggle="tooltip" data-original-title="{{__('View Invoice')}}">
-                                                <i class="fas fa-file-invoice"></i>
-                                            </a>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

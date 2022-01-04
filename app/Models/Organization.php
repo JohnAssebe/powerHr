@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
+    use HasFactory;
     protected $table = 'organization';
     public $primaryKey = 'organization_id';
     public $timestamps = true;

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Booking;
 use Illuminate\Database\Seeder;
 
-class BookingSeeder extends Seeder
+class PrescriptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class BookingSeeder extends Seeder
      */
     public function run()
     {
-      Booking::factory(3)->create();
+        //
     }
 }
