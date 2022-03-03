@@ -6,8 +6,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
-## This is an API for a PowerHour Project
-> PowerHour is a therapy platform for university students 
-> Therapist,Students,and Admins registered in the system 
-> Therapist give therapy for students
-> Admin control the whole system .He/She removes reported users from the system 
+
+<h1> This is an API for a PowerHour Project</h1>
+<quote> PowerHour is a therapy platform for university students </quote>
+<quote> Therapist,Students,and Admins registered in the system </quote>
+<quote> Therapist give therapy for students </quote>
+<quote> Admin control the whole system .He/She removes reported users from the system </quote> 
