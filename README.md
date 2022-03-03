@@ -8,7 +8,7 @@
 </p>
 
 <h1> This is an API for a PowerHour Project</h1>
-<quote> PowerHour is a therapy platform for university students </quote>
-<quote> Therapist,Students,and Admins registered in the system </quote>
-<quote> Therapist give therapy for students </quote>
-<quote> Admin control the whole system .He/She removes reported users from the system </quote> 
+<h6> PowerHour is a therapy platform for university students </h6>
+<h6> Therapist,Students,and Admins registered in the system </h6>
+<h6> Therapist give therapy for students </h6>
+<h6> Admin control the whole system .He/She removes reported users from the system </h6> 
